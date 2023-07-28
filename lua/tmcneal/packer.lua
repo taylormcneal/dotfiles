@@ -33,6 +33,23 @@ return require("packer").startup({function(use)
         requires = {{"nvim-lua/plenary.nvim"}}
     }
 
+    -- treesitter
+    -- used for better syntax highlighting
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
+
+    -- lualine
+    -- a new look for the status bar
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
     if packer_bootstrap then
         require("packer").sync()
     end
